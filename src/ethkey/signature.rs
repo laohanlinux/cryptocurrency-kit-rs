@@ -2,13 +2,13 @@ use super::{public_to_address, Address, Error, Message, Public, Secret, SECP256K
 use common::{to_hex, to_keccak};
 use crypto::{hash, CryptoHash, Hash};
 use ethereum_types::{H256, H520};
-use hex::FromHex;
 use rmps::{Deserializer, Serializer};
 use secp256k1::key::{PublicKey, SecretKey};
 use secp256k1::{Error as SecpError, Message as SecpMessage, RecoverableSignature, RecoveryId};
 use serde::de::{Error as SerdeDeError, SeqAccess, Visitor};
 use serde::ser::SerializeTuple;
 use serde::{Deserialize, Deserializer as StdDeserializer, Serialize, Serializer as StdSerializer};
+
 use std::cmp::PartialEq;
 use std::fmt;
 use std::ops::{Deref, DerefMut};
@@ -379,6 +379,7 @@ mod test {
             writeln!(io::stdout(), "{}", serialized).unwrap();
             writeln!(io::stdout(), "{}", signature1).unwrap();
             writeln!(io::stdout(), "{}", signature_deserialize).unwrap();
+            writeln!(io::stdout(), "v===>{}", signature1.v()).unwrap();
         }
         let signature2: Signature = sign_bytes(keypair.secret(), &[90_u8; 109]).unwrap();
         {
@@ -387,6 +388,7 @@ mod test {
             writeln!(io::stdout(), "{}", serialized).unwrap();
             writeln!(io::stdout(), "{}", signature2).unwrap();
             writeln!(io::stdout(), "{}", signature_deserialize).unwrap();
+            writeln!(io::stdout(), "v===>{}", signature2.v()).unwrap();
         }
         let signature3: Signature = sign_bytes(keypair.secret(), &[79_u8; 109]).unwrap();
         {
@@ -395,6 +397,7 @@ mod test {
             writeln!(io::stdout(), "{}", serialized).unwrap();
             writeln!(io::stdout(), "{}", signature3).unwrap();
             writeln!(io::stdout(), "{}", signature_deserialize).unwrap();
+            writeln!(io::stdout(), "v===>{}", signature3.v()).unwrap();
         }
         assert_eq!(signature1, signature2);
         assert_ne!(signature1, signature3);
