@@ -1,5 +1,5 @@
 use super::{public_to_address, Address, Error, Message, Public, Secret, SECP256K1};
-use common::to_hex;
+use common::{to_hex, to_keccak};
 use crypto::{hash, CryptoHash, Hash};
 use ethereum_types::{H256, H520};
 use hex::FromHex;
@@ -241,6 +241,12 @@ pub fn sign(secret: &Secret, message: &Message) -> Result<Signature, Error> {
     Ok(Signature(data_arr))
 }
 
+pub fn sign_bytes(secret: &Secret, bytes: &[u8]) -> Result<Signature, Error> {
+    let digest = to_keccak(bytes);
+    let message = Message::from_slice(&digest);
+    sign(secret, &message)
+}
+
 /// |compress-0|1~64|
 pub fn verify_public(
     public: &Public,
@@ -298,7 +304,7 @@ pub fn recover(signature: &Signature, message: &Message) -> Result<Public, Error
 
 #[cfg(test)]
 mod test {
-    use super::{recover, sign, verify_address, verify_public, Signature};
+    use super::{recover, sign, sign_bytes, verify_address, verify_public, Signature};
     use ethkey::{random::Random, Generator, Message};
     use std::io::{self, Write};
     use std::str::FromStr;
@@ -361,5 +367,36 @@ mod test {
         writeln!(io::stdout(), "{}", serialized).unwrap();
         writeln!(io::stdout(), "{}", signature).unwrap();
         writeln!(io::stdout(), "{}", signature_deserialize).unwrap();
+    }
+
+    #[test]
+    fn t_sign_bytes() {
+        let keypair = Random.generate().unwrap();
+        let signature1: Signature = sign_bytes(keypair.secret(), &[90_u8; 109]).unwrap();
+        {
+            let serialized = serde_json::to_string(&signature1).unwrap();
+            let signature_deserialize: Signature = serde_json::from_str(&serialized).unwrap();
+            writeln!(io::stdout(), "{}", serialized).unwrap();
+            writeln!(io::stdout(), "{}", signature1).unwrap();
+            writeln!(io::stdout(), "{}", signature_deserialize).unwrap();
+        }
+        let signature2: Signature = sign_bytes(keypair.secret(), &[90_u8; 109]).unwrap();
+        {
+            let serialized = serde_json::to_string(&signature2).unwrap();
+            let signature_deserialize: Signature = serde_json::from_str(&serialized).unwrap();
+            writeln!(io::stdout(), "{}", serialized).unwrap();
+            writeln!(io::stdout(), "{}", signature2).unwrap();
+            writeln!(io::stdout(), "{}", signature_deserialize).unwrap();
+        }
+        let signature3: Signature = sign_bytes(keypair.secret(), &[79_u8; 109]).unwrap();
+        {
+            let serialized = serde_json::to_string(&signature3).unwrap();
+            let signature_deserialize: Signature = serde_json::from_str(&serialized).unwrap();
+            writeln!(io::stdout(), "{}", serialized).unwrap();
+            writeln!(io::stdout(), "{}", signature3).unwrap();
+            writeln!(io::stdout(), "{}", signature_deserialize).unwrap();
+        }
+        assert_eq!(signature1, signature2);
+        assert_ne!(signature1, signature3);
     }
 }
