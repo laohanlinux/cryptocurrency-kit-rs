@@ -14,9 +14,9 @@ pub enum Error {
 
 pub mod sign {
     use common;
-    use ::crypto::Hash;
-    use ethkey::{Secret, Public, Generator, SECP256K1, Error};
-    use secp256k1::{self, key, Secp256k1, Signature, Message, ContextFlag};
+    use crypto::Hash;
+    use ethkey::{Error, Generator, Public, Secret, SECP256K1};
+    use secp256k1::{self, key, ContextFlag, Message, Secp256k1, Signature};
 
     pub fn verify(public: &Public, sign: &Signature, plain_text_hash: &Hash) -> bool {
         let context = &SECP256K1;
@@ -27,32 +27,36 @@ pub mod sign {
             temp
         };
         let publ = key::PublicKey::from_slice(context, &pdata).unwrap();
-        context.verify(
-            &Message::from_slice(plain_text_hash.as_ref()).unwrap(),
-            &sign,
-            &publ,
-        ).is_ok()
+        context
+            .verify(
+                &Message::from_slice(plain_text_hash.as_ref()).unwrap(),
+                &sign,
+                &publ,
+            )
+            .is_ok()
     }
 
     pub fn sign(message: &Message, secret: &Secret) -> Signature {
         let context = &SECP256K1;
-        context.sign(message, &secret.to_secp256k1_secret().unwrap()).unwrap()
+        context
+            .sign(message, &secret.to_secp256k1_secret().unwrap())
+            .unwrap()
     }
 }
 
 #[cfg(test)]
 mod test {
     use super::*;
-    use ::crypto::{CryptoHash, Hash, hash};
+    use crypto::{hash, CryptoHash, Hash};
     #[macro_use]
     use encoding::msgpack::*;
     use ethereum_types::H256;
-    use ethkey::{Public, Address, KeyPair};
-    use ethkey::Generator;
     use ethkey::random::Random;
+    use ethkey::Generator;
+    use ethkey::{Address, KeyPair, Public};
+    use rmps::{Deserializer, Serializer};
+    use serde::{Deserialize, Serialize};
     use std::io::{self, Write};
-    use serde::{Serialize, Deserialize};
-    use rmps::{Serializer, Deserializer};
 
     #[derive(Debug, PartialEq, Deserialize, Serialize)]
     struct Block {
@@ -64,10 +68,7 @@ mod test {
 
     impl Block {
         fn new(height: u64, validator: Vec<Validator>) -> Block {
-            Block {
-                height,
-                validator,
-            }
+            Block { height, validator }
         }
     }
 
@@ -75,7 +76,6 @@ mod test {
     struct Validator {
         address: Address,
         publickey: Public,
-
     }
 
     impl Validator {
@@ -93,7 +93,6 @@ mod test {
     fn error() {
         writeln!(io::stdout(), "{:?}", Error::Symm).unwrap();
     }
-
 
     #[test]
     fn sign() {

@@ -7,6 +7,7 @@ authors = ["Rg <Rg@DESKTOP-6E9RNIT>"]
 serde = "1.0.10"
 serde_derive = "1.0.10"
 serde_json = "1.0.2"
+bincode = "*"
 failure = "0.1.1"
 hex = { git = "https://github.com/KokaKiwi/rust-hex.git"}
 sha3 = "0.7.3"

@@ -6,7 +6,9 @@ use hex::FromHex;
 use rmps::{Deserializer, Serializer};
 use secp256k1::key::{PublicKey, SecretKey};
 use secp256k1::{Error as SecpError, Message as SecpMessage, RecoverableSignature, RecoveryId};
-use serde::{Deserialize, Serialize};
+use serde::de::{Error as SerdeDeError, SeqAccess, Visitor};
+use serde::ser::SerializeTuple;
+use serde::{Deserialize, Deserializer as StdDeserializer, Serialize, Serializer as StdSerializer};
 use std::cmp::PartialEq;
 use std::fmt;
 use std::ops::{Deref, DerefMut};
@@ -16,7 +18,9 @@ pub const SIGNATURE_SIZE: usize = 65;
 pub const SIGNATURE_R_SIZE: usize = 32;
 pub const SIGNATURE_S_SIZE: usize = 32;
 
-/// Signature encoded as RSV components
+/// Signature encoded
+/// as RSV components
+//#[derive(Deserialize, Serialize)]
 pub struct Signature([u8; SIGNATURE_SIZE]);
 
 impl Signature {
@@ -77,6 +81,50 @@ impl Signature {
     }
 }
 
+impl Serialize for Signature {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: StdSerializer,
+    {
+        let mut seq = serializer.serialize_tuple(self.0.len())?;
+        for elem in &self.0[..] {
+            seq.serialize_element(elem)?;
+        }
+        seq.end()
+    }
+}
+
+impl<'de> Deserialize<'de> for Signature {
+    fn deserialize<D>(deserializer: D) -> Result<Signature, D::Error>
+    where
+        D: StdDeserializer<'de>,
+    {
+        struct ArrayVisitor {}
+        impl<'de> Visitor<'de> for ArrayVisitor {
+            type Value = Signature;
+
+            fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+                formatter.write_str(concat!("an array of length ", 65))
+            }
+
+            fn visit_seq<A>(self, mut seq: A) -> Result<Signature, A::Error>
+            where
+                A: SeqAccess<'de>,
+            {
+                let mut arr = [u8::default(); 65];
+                for i in 0..65 {
+                    arr[i] = seq
+                        .next_element()?
+                        .ok_or_else(|| SerdeDeError::invalid_length(i, &self))?;
+                }
+                Ok(Signature(arr))
+            }
+        }
+
+        let visitor = ArrayVisitor {};
+        deserializer.deserialize_tuple(65, visitor)
+    }
+}
 // manual implementation large arrays don't have trait impls by default.
 // remove when integer generics exist
 impl PartialEq for Signature {
@@ -252,6 +300,7 @@ pub fn recover(signature: &Signature, message: &Message) -> Result<Public, Error
 mod test {
     use super::{recover, sign, verify_address, verify_public, Signature};
     use ethkey::{random::Random, Generator, Message};
+    use std::io::{self, Write};
     use std::str::FromStr;
 
     #[test]
@@ -300,5 +349,17 @@ mod test {
         let message = Message::default();
         let signature = sign(keypair.secret(), &message).unwrap();
         assert!(verify_address(&keypair.address(), &signature, &message).unwrap());
+    }
+
+    #[test]
+    fn sign_deserialize_serialize() {
+        let keypair = Random.generate().unwrap();
+        let message = Message::default();
+        let signature: Signature = sign(keypair.secret(), &message).unwrap();
+        let serialized = serde_json::to_string(&signature).unwrap();
+        let signature_deserialize: Signature = serde_json::from_str(&serialized).unwrap();
+        writeln!(io::stdout(), "{}", serialized).unwrap();
+        writeln!(io::stdout(), "{}", signature).unwrap();
+        writeln!(io::stdout(), "{}", signature_deserialize).unwrap();
     }
 }
