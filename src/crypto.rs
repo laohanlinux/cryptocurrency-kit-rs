@@ -16,7 +16,7 @@ use uuid::Uuid;
 
 pub const HASH_SIZE: usize = 32;
 
-#[derive(PartialEq, Eq, PartialOrd, Ord, Clone, Copy)]
+#[derive(Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Clone, Copy)]
 pub struct Hash([u8; HASH_SIZE]);
 
 impl Hash {
