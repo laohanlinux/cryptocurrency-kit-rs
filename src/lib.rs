@@ -20,7 +20,6 @@ extern crate bincode;
 extern crate failure;
 extern crate byteorder;
 extern crate chrono;
-extern crate exonum_rocksdb as rocksdb;
 extern crate hex;
 extern crate rmp;
 extern crate rmp_serde as rmps;
