@@ -15,6 +15,11 @@ use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
 pub const HASH_SIZE: usize = 32;
+pub const EMPTY_HASH: Hash = Hash([0_u8; HASH_SIZE]);
+
+pub fn empty_hash(hash: &Hash) -> bool {
+    hash.0 == EMPTY_HASH.0
+}
 
 #[derive(Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Clone, Copy)]
 pub struct Hash([u8; HASH_SIZE]);
@@ -122,6 +127,7 @@ impl HashStream {
 
 #[cfg(test)]
 mod test {
+    use super::*;
     use std::io::{self, Write};
 
     #[test]
@@ -129,5 +135,13 @@ mod test {
         for i in 0..100 {
             writeln!(io::stdout(), "{:#?}", super::hash(vec![i])).unwrap();
         }
+    }
+
+    #[test]
+    fn t_empty_hash(){
+        let h1 = Hash([0_u8; HASH_SIZE]);
+        assert!(empty_hash(&h1));
+        assert!(!empty_hash(&Hash([1_u8; HASH_SIZE])));
+        assert_eq!(EMPTY_HASH, Hash([0_u8; HASH_SIZE]));
     }
 }

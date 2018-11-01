@@ -28,6 +28,7 @@ use std::io::Cursor;
 use std::mem;
 
 use super::hash::UniqueHash;
+use types::Zero;
 use crypto::{CryptoHash, Hash};
 use ethkey::Public as PublicKey;
 
@@ -133,6 +134,16 @@ impl StorageValue for () {
         let cur = Cursor::new(&value[..]);
         let mut de = Deserializer::new(cur);
         Deserialize::deserialize(&mut de).unwrap()
+    }
+}
+
+impl StorageValue for Zero {
+    fn into_bytes(self) -> Vec<u8> {
+        vec![]
+    }
+
+    fn from_bytes(value: Cow<[u8]>) -> Self {
+        Zero
     }
 }
 
@@ -413,3 +424,14 @@ impl StorageValue for DateTime<Utc> {
 //        }
 //    }
 //}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn zero(){
+        let zero1 = Zero::from_bytes(Cow::from(vec![]));
+        assert_eq!(0, zero1.into_bytes().len());
+    }
+}

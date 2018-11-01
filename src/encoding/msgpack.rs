@@ -2,6 +2,7 @@ use std::io::Cursor;
 use std::string::String;
 use std::time::Duration;
 
+use types::Zero;
 use crypto::*;
 use ethkey::Public as PublicKey;
 use sha3::{Digest, Sha3_256};
@@ -45,6 +46,12 @@ impl CryptoHash for () {
         let mut buf = Vec::new();
         self.serialize(&mut Serializer::new(&mut buf)).unwrap();
         hash(&buf)
+    }
+}
+
+impl CryptoHash for Zero {
+    fn hash(&self) -> Hash {
+        EMPTY_HASH
     }
 }
 
@@ -105,6 +112,14 @@ mod test {
         let v: Vec<u8> = vec![];
         v.serialize(&mut Serializer::new(&mut buf)).unwrap();
         writeln!(io::stdout(), "{}", buf.len()).unwrap();
+    }
+
+    #[test]
+    fn msgpack_unit() {
+        writeln!(io::stdout(), "{:?}", ().hash()).unwrap();
+        let mut buf = Vec::new();
+        ().serialize(&mut Serializer::new(&mut buf)).unwrap();
+        writeln!(io::stdout(), "{:?}", buf).unwrap();
     }
 
     #[test]
