@@ -15,7 +15,7 @@
 #![allow(unsafe_code)]
 
 //! A definition of `StorageKey` trait and implementations for common types.
-
+use types::Zero;
 use common::{from_msgpack, to_msgpack_vec};
 use crypto::{hash, CryptoHash, Hash, HASH_SIZE};
 use encoding::*;
@@ -50,6 +50,20 @@ pub trait StorageKey: ToOwned {
 }
 
 /// No-op implementation.
+impl StorageKey for Zero {
+    fn size(&self) -> usize {
+        0
+    }
+
+    fn write(&self, buffer: &mut [u8]) {
+        // no-op
+    }
+
+    fn read(_buffer: &[u8]) -> Self::Owned {
+        Zero
+    }
+}
+
 impl StorageKey for () {
     fn size(&self) -> usize {
         0
