@@ -50,6 +50,11 @@ impl Hash {
     pub fn to_hex(&self) -> String {
         common::to_hex(self)
     }
+
+    pub fn short(&self) -> String {
+        let hex = self.to_hex();
+        format!("0x{}...{}", &hex[..6], &hex[hex.len() - 6..]).to_string()
+    }
 }
 
 /// It is very good
@@ -138,10 +143,17 @@ mod test {
     }
 
     #[test]
-    fn t_empty_hash(){
+    fn t_empty_hash() {
         let h1 = Hash([0_u8; HASH_SIZE]);
         assert!(empty_hash(&h1));
         assert!(!empty_hash(&Hash([1_u8; HASH_SIZE])));
         assert_eq!(EMPTY_HASH, Hash([0_u8; HASH_SIZE]));
+    }
+
+    #[test]
+    fn t_short_term() {
+        for i in 0..100 {
+            writeln!(io::stdout(), "{:#?}", super::hash(vec![i]).short()).unwrap();
+        }
     }
 }
