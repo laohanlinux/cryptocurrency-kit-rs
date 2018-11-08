@@ -7,12 +7,13 @@ use std::time::{Duration, SystemTime, UNIX_EPOCH};
 use common;
 
 use chrono::prelude::*;
-use ethereum_types::{Public, Secret, U256};
 use rmps::decode::Error;
 use rmps::{Deserializer, Serializer};
 use rustc_hex::{FromHex, FromHexError, ToHex};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
+use ethkey::{Message, Error as SignError, signature::sign, Signature};
+use ethkey::secret::Secret;
 
 pub const HASH_SIZE: usize = 32;
 pub const EMPTY_HASH: Hash = Hash([0_u8; HASH_SIZE]);
@@ -40,6 +41,11 @@ impl Hash {
         assert_eq!(bs.len(), HASH_SIZE);
         // TODO
         None
+    }
+
+    pub fn sign(&self, secret: &Secret) -> Result<Signature, SignError> {
+        let message = Message::from_slice(&self.0);
+        sign(secret, &message)
     }
 
     /// Create a new install with filled with zeros.
