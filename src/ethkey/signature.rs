@@ -302,9 +302,15 @@ pub fn recover(signature: &Signature, message: &Message) -> Result<Public, Error
     Ok(public)
 }
 
+pub fn recover_bytes(signature: &Signature, bytes: &[u8]) -> Result<Public, Error> {
+    let digest = to_keccak(bytes);
+    let message = Message::from_slice(&digest);
+    recover(signature, &message)
+}
+
 #[cfg(test)]
 mod test {
-    use super::{recover, sign, sign_bytes, verify_address, verify_public, Signature};
+    use super::{recover, recover_bytes, sign, sign_bytes, verify_address, verify_public, Signature};
     use ethkey::{random::Random, Generator, Message};
     use std::io::{self, Write};
     use std::str::FromStr;
@@ -339,6 +345,14 @@ mod test {
         let message = Message::default();
         let signature = sign(keypair.secret(), &message).unwrap();
         assert_eq!(keypair.public(), &recover(&signature, &message).unwrap());
+    }
+
+    #[test]
+    fn t_recover_bytes(){
+        let keypair = Random.generate().unwrap();
+        let sign_bytes = sign_bytes(keypair.secret(), &[9_u8; 100]);
+        let pkey = recover_bytes(&sign_bytes.unwrap(), &[9_u8; 100]).unwrap();
+        assert_eq!(&pkey, keypair.public());
     }
 
     #[test]
