@@ -1,5 +1,6 @@
 pub mod types;
 pub mod common;
+pub mod merkle_tree;
 pub mod crypto;
 #[macro_use]
 pub mod encoding;
