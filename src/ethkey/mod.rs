@@ -10,7 +10,7 @@ pub use self::error::Error;
 pub use self::secret::Secret;
 pub use self::keypair::{KeyPair, public_to_address};
 pub use self::random::Random;
-pub use self::signature::{sign, verify_public, verify_address, recover, Signature, SIGNATURE_SIZE};
+pub use self::signature::{sign, sign_bytes, verify_public, verify_address, recover, recover_bytes, Signature, SIGNATURE_SIZE};
 
 #[macro_use]
 pub use encoding::msgpack::*;
