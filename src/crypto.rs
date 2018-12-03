@@ -71,6 +71,7 @@ impl AsRef<[u8]> for Hash {
 }
 
 use std::str::FromStr;
+
 impl FromStr for Hash {
     type Err = FromHexError;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -87,6 +88,7 @@ impl FromStr for Hash {
 }
 
 use std::fmt;
+
 impl fmt::Debug for Hash {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "0x{}", self.to_hex())
@@ -106,6 +108,21 @@ pub trait CryptoHash {
 impl Default for Hash {
     fn default() -> Hash {
         Hash::zero()
+    }
+}
+
+impl fmt::LowerHex for Hash {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "0x{}", self.to_hex().to_lowercase())
+    }
+}
+
+use std::hash::Hash as stdHash;
+use std::hash::Hasher as stdHasher;
+
+impl stdHash for Hash {
+    fn hash<H: stdHasher>(&self, state: &mut H) {
+        self.as_ref().hash(state);
     }
 }
 
@@ -141,11 +158,22 @@ mod test {
     use super::*;
     use std::io::{self, Write};
 
+//    impl CryptoHash for Vec<u8> {
+//        fn hash(&self) -> Hash {
+//            let mut buf = Vec::new();
+//            self.serialize(&mut Serializer::new(&mut buf)).unwrap();
+//            hash(&buf)
+//        }
+//    }
+
+
     #[test]
     fn hash() {
         for i in 0..100 {
             writeln!(io::stdout(), "{:#?}", super::hash(vec![i])).unwrap();
         }
+        let hash = CryptoHash::hash(&vec![10]);
+        writeln!(io::stdout(), "-->{:#?}", hash).unwrap();
     }
 
     #[test]
