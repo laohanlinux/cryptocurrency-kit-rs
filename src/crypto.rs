@@ -28,7 +28,8 @@ pub struct Hash([u8; HASH_SIZE]);
 impl Hash {
     // Create a new instance from bytes array.
     pub fn new(b: &[u8]) -> Self {
-        assert_eq!(b.len(), HASH_SIZE);
+        let size = b.len();
+        assert_eq!(size, HASH_SIZE);
         let mut buf = [0; 32];
         for item in b.iter().enumerate() {
             buf[item.0] = *item.1;
@@ -38,9 +39,9 @@ impl Hash {
 
     /// Create a new instance from bytes slice
     pub fn from_slice(bs: &[u8]) -> Option<Self> {
-        assert_eq!(bs.len(), HASH_SIZE);
-        // TODO
-        None
+        let size = bs.len();
+        assert_eq!(size, HASH_SIZE);
+        Some(Self::new(bs))
     }
 
     pub fn sign(&self, secret: &Secret) -> Result<Signature, SignError> {
