@@ -57,9 +57,10 @@ impl CryptoHash for Zero {
 
 impl CryptoHash for Vec<u8> {
     fn hash(&self) -> Hash {
-        let mut buf = Vec::new();
-        self.serialize(&mut Serializer::new(&mut buf)).unwrap();
-        hash(&buf)
+//        let mut buf = Vec::new();
+//        self.serialize(&mut Serializer::new(&mut buf)).unwrap();
+//        hash(&buf)
+        hash(self)
     }
 }
 
@@ -128,4 +129,14 @@ mod test {
             writeln!(io::stdout(), "random_{} {:?}", i, i.hash()).unwrap();
         }
     }
+
+    #[test]
+    fn de_vec(){
+        use crate::common::to_keccak;
+        let v = vec![1];
+        println!("{:?}", v.hash());
+        let digest = to_keccak(v);
+        println!("{:?}", digest);
+    }
+
 }
