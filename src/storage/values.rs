@@ -18,8 +18,6 @@ use byteorder::{ByteOrder, LittleEndian};
 use chrono::prelude::*;
 use chrono::{DateTime, NaiveDateTime, Utc};
 use encoding;
-use rmps::decode::Error;
-use rmps::{Deserializer, Serializer};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
@@ -96,14 +94,10 @@ macro_rules! implement_storagevalue_traits {
     ($key: ident) => {
         impl StorageValue for $key {
             fn into_bytes(self) -> Vec<u8> {
-                let mut buf: Vec<u8> = Vec::new();
-                self.serialize(&mut Serializer::new(&mut buf)).unwrap();
-                buf
+                serde_json::to_vec(&self).unwrap()
             }
             fn from_bytes(value: Cow<[u8]>) -> Self {
-                let cur = Cursor::new(&value[..]);
-                let mut de = Deserializer::new(cur);
-                Deserialize::deserialize(&mut de).unwrap()
+                serde_json::from_slice(&value).unwrap()
             }
         }
     };
@@ -125,15 +119,11 @@ implement_storagevalue_traits! {Uuid}
 /// No-op implementation.
 impl StorageValue for () {
     fn into_bytes(self) -> Vec<u8> {
-        let mut buf: Vec<u8> = Vec::new();
-        self.serialize(&mut Serializer::new(&mut buf)).unwrap();
-        buf
+        serde_json::to_vec(&self).unwrap()
     }
 
     fn from_bytes(value: Cow<[u8]>) -> Self {
-        let cur = Cursor::new(&value[..]);
-        let mut de = Deserializer::new(cur);
-        Deserialize::deserialize(&mut de).unwrap()
+        serde_json::from_slice(&value).unwrap()
     }
 }
 
@@ -150,37 +140,21 @@ impl StorageValue for Zero {
 // Hash is very special
 impl StorageValue for Hash {
     fn into_bytes(self) -> Vec<u8> {
-        let mut buf: Vec<u8> = Vec::new();
-        self.as_ref()
-            .to_vec()
-            .serialize(&mut Serializer::new(&mut buf))
-            .unwrap();
-        buf
+        serde_json::to_vec(&self).unwrap()
     }
 
     fn from_bytes(value: Cow<[u8]>) -> Self {
-        let cur = Cursor::new(&value[..]);
-        let mut de = Deserializer::new(cur);
-        let v: Vec<u8> = Deserialize::deserialize(&mut de).unwrap();
-        Hash::new(&v)
+        serde_json::from_slice(&value).unwrap()
     }
 }
 
 impl StorageValue for PublicKey {
     fn into_bytes(self) -> Vec<u8> {
-        let mut buf: Vec<u8> = Vec::new();
-        self.0
-            .as_ref()
-            .serialize(&mut Serializer::new(&mut buf))
-            .unwrap();
-        buf
+        serde_json::to_vec(&self).unwrap()
     }
 
     fn from_bytes(value: Cow<[u8]>) -> Self {
-        let cur = Cursor::new(&value[..]);
-        let mut de = Deserializer::new(cur);
-        let v: Vec<u8> = Deserialize::deserialize(&mut de).unwrap();
-        PublicKey::from_slice(&v)
+        serde_json::from_slice(&value).unwrap()
     }
 }
 
@@ -196,30 +170,22 @@ impl StorageValue for PublicKey {
 
 impl StorageValue for Vec<u8> {
     fn into_bytes(self) -> Vec<u8> {
-        let mut buf: Vec<u8> = Vec::new();
-        self.serialize(&mut Serializer::new(&mut buf)).unwrap();
-        buf
+        serde_json::to_vec(&self).unwrap()
     }
 
     fn from_bytes(value: Cow<[u8]>) -> Self {
-        let cur = Cursor::new(&value[..]);
-        let mut de = Deserializer::new(cur);
-        Deserialize::deserialize(&mut de).unwrap()
+        serde_json::from_slice(&value).unwrap()
     }
 }
 
 /// Uses little-endian encoding.
 impl StorageValue for DateTime<Utc> {
     fn into_bytes(self) -> Vec<u8> {
-        let mut buf: Vec<u8> = Vec::new();
-        self.serialize(&mut Serializer::new(&mut buf)).unwrap();
-        buf
+        serde_json::to_vec(&self).unwrap()
     }
 
     fn from_bytes(value: Cow<[u8]>) -> Self {
-        let cur = Cursor::new(&value[..]);
-        let mut de = Deserializer::new(cur);
-        Deserialize::deserialize(&mut de).unwrap()
+        serde_json::from_slice(&value).unwrap()
     }
 }
 

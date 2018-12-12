@@ -191,4 +191,14 @@ mod test {
             writeln!(io::stdout(), "{:#?}", super::hash(vec![i]).short()).unwrap();
         }
     }
+
+    #[test]
+    fn hash_eq() {
+        let h1: Hash = CryptoHash::hash(&vec![1, 2]);
+        let h2: Hash = CryptoHash::hash(&vec![1, 2]);
+        println!("h1:{:?}, h2:{:?}", h1, h2);
+        let eq = h1 == h2;
+        assert!(eq);
+        assert_eq!(h1, h2);
+    }
 }
