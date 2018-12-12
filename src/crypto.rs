@@ -7,8 +7,6 @@ use std::time::{Duration, SystemTime, UNIX_EPOCH};
 use common;
 
 use chrono::prelude::*;
-use rmps::decode::Error;
-use rmps::{Deserializer, Serializer};
 use rustc_hex::{FromHex, FromHexError, ToHex};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;

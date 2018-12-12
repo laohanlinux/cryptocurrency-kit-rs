@@ -22,8 +22,6 @@ use encoding::*;
 use ethkey::{Generator, Public, Random, Signature, SIGNATURE_SIZE};
 
 use byteorder::{BigEndian, ByteOrder};
-use rmps::decode::Error;
-use rmps::{Deserializer, Serializer};
 use serde::{Deserialize, Serialize};
 use chrono::{DateTime, NaiveDateTime, Utc};
 use rust_decimal::Decimal;

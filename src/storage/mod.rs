@@ -1,9 +1,5 @@
-pub mod db;
 pub mod error;
 pub mod hash;
-//pub mod rocksdb;
-//pub mod base_index;
-//pub mod indexes_metadata;
 #[macro_use]
 pub mod keys;
 #[macro_use]

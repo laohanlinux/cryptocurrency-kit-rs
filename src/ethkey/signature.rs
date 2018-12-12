@@ -2,7 +2,6 @@ use super::{public_to_address, Address, Error, Message, Public, Secret, SECP256K
 use common::{to_hex, to_keccak};
 use crypto::{hash, CryptoHash, Hash};
 use ethereum_types::{H256, H520};
-use rmps::{Deserializer, Serializer};
 use secp256k1::key::{PublicKey, SecretKey};
 use secp256k1::{Error as SecpError, Message as SecpMessage, RecoverableSignature, RecoveryId};
 use serde::de::{Error as SerdeDeError, SeqAccess, Visitor};
@@ -177,9 +176,7 @@ impl Default for Signature {
 
 impl CryptoHash for Signature {
     fn hash(&self) -> Hash {
-        let mut buf: Vec<u8> = Vec::new();
-        self.0.serialize(&mut Serializer::new(&mut buf)).unwrap();
-        hash(&buf)
+        hash(serde_json::to_vec(self).unwrap())
     }
 }
 

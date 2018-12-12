@@ -8,8 +8,6 @@ use ethkey::Public as PublicKey;
 use sha3::{Digest, Sha3_256};
 
 use chrono::prelude::*;
-use rmps::decode::Error;
-use rmps::{Deserializer, Serializer};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
@@ -19,8 +17,7 @@ macro_rules! implement_cryptohash_traits {
     ($key: ident) => {
         impl CryptoHash for $key {
             fn hash(&self) -> Hash {
-                let mut buf: Vec<u8> = Vec::new();
-                self.serialize(&mut Serializer::new(&mut buf)).unwrap();
+                let buf = serde_json::to_vec(self).unwrap();
                 hash(&buf)
             }
         }
@@ -43,8 +40,7 @@ implement_cryptohash_traits! {PublicKey}
 
 impl CryptoHash for () {
     fn hash(&self) -> Hash {
-        let mut buf = Vec::new();
-        self.serialize(&mut Serializer::new(&mut buf)).unwrap();
+        let buf = serde_json::to_vec(self).unwrap();
         hash(&buf)
     }
 }
@@ -66,8 +62,7 @@ impl CryptoHash for Vec<u8> {
 
 impl CryptoHash for DateTime<Utc> {
     fn hash(&self) -> Hash {
-        let mut buf = Vec::new();
-        self.serialize(&mut Serializer::new(&mut buf)).unwrap();
+        let buf = serde_json::to_vec(self).unwrap();
         hash(&buf)
     }
 }
@@ -77,6 +72,7 @@ mod test {
     use super::*;
     use ethkey::Generator;
     use std::io::{self, Write};
+
     #[test]
     fn u8_hsh() {
         let u_8: u8 = u8::from(100);
@@ -98,28 +94,21 @@ mod test {
     fn publickey_hash() {
         (0..100).for_each(|i| {
             let keypair = ::ethkey::Random {}.generate().unwrap();
-            let mut buf = Vec::new();
-            keypair
-                .public()
-                .serialize(&mut Serializer::new(&mut buf))
-                .unwrap();
+            let pubkey = keypair.public();
+            let mut buf = serde_json::to_vec(pubkey).unwrap();
             writeln!(io::stdout(), "{}", buf.len()).unwrap();
         })
     }
 
     #[test]
     fn vec_hash() {
-        let mut buf = Vec::new();
-        let v: Vec<u8> = vec![];
-        v.serialize(&mut Serializer::new(&mut buf)).unwrap();
+        let buf = serde_json::to_vec(&vec![0, 0]).unwrap();
         writeln!(io::stdout(), "{}", buf.len()).unwrap();
     }
 
     #[test]
-    fn msgpack_unit() {
-        writeln!(io::stdout(), "{:?}", ().hash()).unwrap();
-        let mut buf = Vec::new();
-        ().serialize(&mut Serializer::new(&mut buf)).unwrap();
+    fn json_unit() {
+        let mut buf = serde_json::to_vec(&()).unwrap();
         writeln!(io::stdout(), "{:?}", buf).unwrap();
     }
 
@@ -131,12 +120,11 @@ mod test {
     }
 
     #[test]
-    fn de_vec(){
+    fn de_vec() {
         use crate::common::to_keccak;
         let v = vec![1];
         println!("{:?}", v.hash());
         let digest = to_keccak(v);
         println!("{:?}", digest);
     }
-
 }

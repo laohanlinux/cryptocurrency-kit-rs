@@ -1,7 +1,7 @@
 [package]
 name = "cryptocurrency-kit"
 version = "0.1.0"
-authors = ["Rg <Rg@DESKTOP-6E9RNIT>"]
+authors = ["Rg <daimaldd@gmail.com>"]
 
 [dependencies]
 serde = "1.0.10"

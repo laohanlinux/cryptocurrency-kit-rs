@@ -49,12 +49,11 @@ mod test {
     use super::*;
     use crypto::{hash, CryptoHash, Hash};
     #[macro_use]
-    use encoding::msgpack::*;
+    use encoding::json::*;
     use ethereum_types::H256;
     use ethkey::random::Random;
     use ethkey::Generator;
     use ethkey::{Address, KeyPair, Public};
-    use rmps::{Deserializer, Serializer};
     use serde::{Deserialize, Serialize};
     use std::io::{self, Write};
 

@@ -1,5 +1,5 @@
 #[macro_use]
-pub mod msgpack;
+pub mod json;
 #[macro_use]
 pub mod bigarray;
 
