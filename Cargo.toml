@@ -17,7 +17,7 @@ uuid = { version = "0.6.0", features = ["serde"] }
 rmp = "*"
 rmp-serde  = "*"
 keccak-hash = "*"
-ethereum-types = "*"
+ethereum-types = "0.5.2"
 eth-secp256k1 = { git = "https://github.com/paritytech/rust-secp256k1" }
 lazy_static = "1.0"
 rand = "0.4"
