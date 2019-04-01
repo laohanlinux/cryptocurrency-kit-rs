@@ -1,3 +1,6 @@
+#![feature(fixed_size_array)]
+#![feature(proc_macro_internals)]
+
 pub mod types;
 pub mod common;
 pub mod merkle_tree;
@@ -34,6 +37,8 @@ extern crate rand;
 extern crate rust_decimal;
 extern crate rustc_hex;
 extern crate tiny_keccak;
+extern crate core;
+extern crate proc_macro;
 
 #[cfg(test)]
 mod tests {

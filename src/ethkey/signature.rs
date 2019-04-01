@@ -61,23 +61,6 @@ impl Signature {
     pub fn from_slice(data: &[u8]) -> Self {
         Self::from_electrum(data)
     }
-
-    /// Check if this is a "low" signature
-    pub fn is_low_s(&self) -> bool {
-        H256::from_slice(self.s())
-            <= "7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5D576E7357A4501DDFE92F46681B20A0".into()
-    }
-
-    /// Check if each_component of the signature is in range.
-    pub fn is_valid(&self) -> bool {
-        self.v() <= 1
-            && H256::from_slice(self.r())
-                < "fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141".into()
-            && H256::from_slice(self.r()) >= 1.into()
-            && H256::from_slice(self.s())
-                < "fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141".into()
-            && H256::from_slice(self.s()) >= 1.into()
-    }
 }
 
 impl Serialize for Signature {
@@ -226,7 +209,7 @@ impl DerefMut for Signature {
 
 pub fn sign(secret: &Secret, message: &Message) -> Result<Signature, Error> {
     let context = &SECP256K1;
-    let sec = SecretKey::from_slice(context, &secret)?;
+    let sec = SecretKey::from_slice(context, secret.as_ref())?;
     let s = context.sign_recoverable(&SecpMessage::from_slice(&message[..])?, &sec)?;
     let (rec_id, data) = s.serialize_compact(context);
     let mut data_arr = [0; SIGNATURE_SIZE];
@@ -240,7 +223,7 @@ pub fn sign(secret: &Secret, message: &Message) -> Result<Signature, Error> {
 
 pub fn sign_bytes(secret: &Secret, bytes: &[u8]) -> Result<Signature, Error> {
     let digest = to_keccak(bytes);
-    let message = Message::from_slice(&digest);
+    let message = Message::from_slice(digest.as_ref());
     sign(secret, &message)
 }
 
@@ -261,7 +244,7 @@ pub fn verify_public(
 
     let pdata: [u8; SIGNATURE_SIZE] = {
         let mut temp = [4u8; SIGNATURE_SIZE];
-        temp[1..SIGNATURE_SIZE].copy_from_slice(&**public);
+        temp[1..SIGNATURE_SIZE].copy_from_slice(public.as_ref());
         temp
     };
 
@@ -284,6 +267,8 @@ pub fn verify_address(
 }
 
 pub fn recover(signature: &Signature, message: &Message) -> Result<Public, Error> {
+    use ethereum_types::H512;
+    use crate::common::to_fixed_array_64;
     let context = &SECP256K1;
     let v_off = SIGNATURE_R_SIZE + SIGNATURE_S_SIZE;
     let rsig = RecoverableSignature::from_compact(
@@ -294,14 +279,13 @@ pub fn recover(signature: &Signature, message: &Message) -> Result<Public, Error
     let pubkey = context.recover(&SecpMessage::from_slice(&message[..])?, &rsig)?;
     let serialized = pubkey.serialize_vec(context, false);
 
-    let mut public = Public::default();
-    public.copy_from_slice(&serialized[1..65]);
+    let public = H512::from(to_fixed_array_64(&serialized[1..65]));
     Ok(public)
 }
 
 pub fn recover_bytes(signature: &Signature, bytes: &[u8]) -> Result<Public, Error> {
     let digest = to_keccak(bytes);
-    let message = Message::from_slice(&digest);
+    let message = Message::from_slice(digest.as_ref());
     recover(signature, &message)
 }
 

@@ -1,5 +1,7 @@
 use std::iter;
 
+use ethereum_types::H256;
+
 use crate::common::to_keccak;
 use crate::crypto::{CryptoHash, Hash, hash};
 
@@ -59,7 +61,8 @@ impl MerkleTree {
 impl MerkleNode {
     fn new(data: &[u8]) -> MerkleNode {
         let mut mn: MerkleNode = Default::default();
-        mn.data = Box::new(to_keccak(data).to_vec());
+        let keccak: [u8; 32] = to_keccak(data).into();
+        mn.data = Box::new(keccak.to_vec());
         mn
     }
     fn new_merkle_node(left: MerkleNode, right: MerkleNode) -> MerkleNode {
@@ -69,8 +72,8 @@ impl MerkleNode {
         hash_data[..left.data.len()].clone_from_slice(&left.data);
         hash_data[left.data.len()..].clone_from_slice(&right.data);
 
-        let hash = to_keccak(&hash_data).to_vec();
-        merkle_tree_node.data = Box::new(hash);
+        let hash: [u8; 32] = to_keccak(&hash_data).into();
+        merkle_tree_node.data = Box::new(hash.to_vec());
         merkle_tree_node
     }
 }
