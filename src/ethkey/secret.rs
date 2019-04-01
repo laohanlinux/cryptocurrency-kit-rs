@@ -9,6 +9,9 @@ use mem::Memzero;
 use rustc_hex::ToHex as StdToHex;
 
 use super::{Error, SECP256K1};
+use std::intrinsics::copy;
+use core::array::FixedSizeArray;
+use crate::common::to_fixed_array_32;
 
 #[derive(Clone, PartialEq, Eq)]
 pub struct Secret {
@@ -39,8 +42,8 @@ impl Secret {
         if key.len() != 32 {
             return None;
         }
-        let mut h = H256::default();
-        h.copy_from_slice(&key[0..32]);
+        // TODO Opz use unsafe code to advoice alloc new space
+        let mut h = H256::from(to_fixed_array_32(key));
         Some(Secret { inner: Memzero::from(h) })
     }
 
@@ -80,13 +83,14 @@ impl FromStr for Secret {
 
 impl From<[u8; 32]> for Secret {
     fn from(k: [u8; 32]) -> Self {
-        Secret { inner: Memzero::from(H256(k)) }
+        let inner = Memzero::from(H256::from(k));
+        Secret { inner: inner }
     }
 }
 
 impl From<H256> for Secret {
     fn from(s: H256) -> Self {
-        s.0.into()
+        s.into()
     }
 }
 

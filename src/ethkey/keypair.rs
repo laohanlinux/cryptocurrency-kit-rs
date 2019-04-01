@@ -15,19 +15,22 @@
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
 use std::fmt;
+use parity_crypto::Keccak256;
+use ethereum_types::{H256, H160, H512};
+
 use secp256k1::key;
-use common::to_hex;
-use super::keccak::Keccak256;
+use common::{to_hex, to_fixed_array, to_fixed_array_20, to_fixed_array_64};
 use super::{Secret, SECP256K1, Public, Address, Error};
+use chrono::format::Numeric::Hour12;
+use proc_macro::bridge::TokenTree::Punct;
 
 pub fn public_to_address(public: &Public) -> Address {
     let hash = public.keccak256();
-    let mut result = Address::default();
-    result.copy_from_slice(&hash[12..]);
-    result
+    let result = to_fixed_array_20(&hash[12..]);
+    Address::from(result)
 }
 
-# [derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq)]
 /// Secp256k1 key pair
 pub struct KeyPair {
     secret: Secret,
@@ -50,8 +53,7 @@ impl KeyPair {
         let pub_key = key::PublicKey::from_secret_key(context, &s)?;
         let serialized = pub_key.serialize_vec(context, false);
 
-        let mut public = Public::default();
-        public.copy_from_slice(&serialized[1..65]);
+        let mut public = H512::from(to_fixed_array_64(&serialized[1..65]));
 
         let keypair = KeyPair {
             secret,
@@ -70,8 +72,7 @@ impl KeyPair {
         let context = &SECP256K1;
         let serialized = publ.serialize_vec(context, false);
         let secret = Secret::from(sec);
-        let mut public = Public::default();
-        public.copy_from_slice(&serialized[1..65]);
+        let public = H512::from(to_fixed_array_64(&serialized[1..65]));
 
         KeyPair {
             secret,
@@ -99,22 +100,4 @@ mod tests {
     use std::str::FromStr;
     use super::KeyPair;
     use super::Secret;
-
-    #[test]
-    fn from_secret() {
-        let secret = Secret::from_str("a100df7a048e50ed308ea696dc600215098141cb391e9527329df289f9383f65").unwrap();
-        let _ = KeyPair::from_secret(secret).unwrap();
-    }
-
-    #[test]
-    fn keypair_display() {
-        let expected =
-            "secret:  a100df7a048e50ed308ea696dc600215098141cb391e9527329df289f9383f65
-public:  8ce0db0b0359ffc5866ba61903cc2518c3675ef2cf380a7e54bde7ea20e6fa1ab45b7617346cd11b7610001ee6ae5b0155c41cad9527cbcdff44ec67848943a4
-address: 5b073e9233944b5e729e46d618f0d8edf3d9c34a".to_owned();
-        let secret = Secret::from_str("a100df7a048e50ed308ea696dc600215098141cb391e9527329df289f9383f65").unwrap();
-        let kp = KeyPair::from_secret(secret).unwrap();
-        writeln!(io::stdout(), "{}", kp).unwrap();
-        assert_eq!(format!("{}", kp), expected);
-    }
 }
