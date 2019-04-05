@@ -74,6 +74,10 @@ impl Secret {
     }
 }
 
+
+use std::io::{self, Write};
+use serde_json::error::ErrorCode::Message;
+
 impl FromStr for Secret {
     type Err = Error;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -90,7 +94,9 @@ impl From<[u8; 32]> for Secret {
 
 impl From<H256> for Secret {
     fn from(s: H256) -> Self {
-        s.into()
+        Secret {
+            inner: Memzero::from(s),
+        }
     }
 }
 

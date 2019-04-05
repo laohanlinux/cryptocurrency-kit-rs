@@ -10,9 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1897a023-cd13-416c-a3a4-88fc4d17e2e6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ethkey/keypair.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ethkey/keypair.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ethkey/secret.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ethkey/secret.rs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,70 +30,64 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Cargo.toml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="18" column="11" selection-start-line="18" selection-end-line="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/mod.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
-              <folding>
-                <element signature="e#987#988#0" expanded="true" />
-                <element signature="e#1011#1012#0" expanded="true" />
-                <element signature="e#636#637#0" expanded="true" />
-                <element signature="e#660#661#0" expanded="true" />
-                <element signature="e#852#853#0" expanded="true" />
-                <element signature="e#891#892#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ethkey/secret.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="78" column="7" selection-start-line="78" selection-start-column="7" selection-end-line="78" selection-end-column="7" />
+            <state relative-caret-position="197">
+              <caret line="96" column="16" lean-forward="true" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="16" />
               <folding>
-                <element signature="e#2637#2638#0" expanded="true" />
-                <element signature="e#2660#2661#0" expanded="true" />
-                <element signature="e#3154#3155#0" expanded="true" />
-                <element signature="e#3180#3181#0" expanded="true" />
+                <element signature="e#3200#3201#0" expanded="true" />
+                <element signature="e#3226#3227#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lib.rs">
+        <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_json-1.0.39/src/error.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+            <state relative-caret-position="198">
+              <caret line="184" column="4" selection-start-line="184" selection-start-column="4" selection-end-line="184" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mem/mod.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.cargo/git/checkouts/rust-secp256k1-e90785e8ed5830aa/ccc06e7/src/key.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="27" column="11" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ethkey/keypair.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="101" column="22" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
+            <state relative-caret-position="188">
+              <caret line="121" column="14" selection-start-line="121" selection-start-column="14" selection-end-line="121" selection-end-column="14" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ethkey/keccak.rs">
+        <entry file="file://$USER_HOME$/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src/libcore/convert.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+            <state relative-caret-position="191">
+              <caret line="518" column="7" selection-start-line="518" selection-start-column="7" selection-end-line="518" selection-end-column="7" />
+              <folding>
+                <element signature="e#18852#18853#0" expanded="true" />
+                <element signature="e#18880#18881#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,8 +95,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/ethereum-types-0.5.2/src/hash.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="84" column="24" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="24" />
+            <state relative-caret-position="537">
+              <caret line="74" selection-start-line="74" selection-end-line="74" />
               <folding>
                 <element signature="e#2585#2586#0" expanded="true" />
                 <element signature="e#2617#2618#0" expanded="true" />
@@ -112,40 +106,32 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/fixed-hash-0.3.0/src/hash.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ethkey/signature.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="62" column="5" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+            <state relative-caret-position="123">
+              <caret line="49" column="30" lean-forward="true" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
               <folding>
-                <element signature="e#5566#5567#0" expanded="true" />
-                <element signature="e#5620#5621#0" expanded="true" />
-                <element signature="e#6318#6319#0" expanded="true" />
-                <element signature="e#6344#6345#0" expanded="true" />
+                <element signature="e#1089#1090#0" expanded="true" />
+                <element signature="e#1166#1167#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src/libcore/convert.rs">
+        <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/ethereum-types-0.4.2/src/hash.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="473" column="7" selection-start-line="473" selection-start-column="7" selection-end-line="473" selection-end-column="7" />
-              <folding>
-                <element signature="e#17513#17514#0" expanded="true" />
-                <element signature="e#17558#17559#0" expanded="true" />
-                <element signature="e#18689#18690#0" expanded="true" />
-                <element signature="e#18717#18718#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="198">
+              <caret line="103" column="7" selection-start-line="103" selection-start-column="7" selection-end-line="103" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_json-1.0.39/src/de.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="40194">
+              <caret line="2311" column="7" selection-start-line="2311" selection-start-column="7" selection-end-line="2311" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -178,6 +164,8 @@
       <find>src/types/transaction.rs</find>
       <find>from_low_u64_be</find>
       <find>H256</find>
+      <find>from_str</find>
+      <find>to_fixed_array_32</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -201,24 +189,25 @@
         <option value="$PROJECT_DIR$/src/merkle_tree/mod.rs" />
         <option value="$PROJECT_DIR$/src/common/mod.rs" />
         <option value="$PROJECT_DIR$/src/ethkey/signature.rs" />
-        <option value="$PROJECT_DIR$/src/ethkey/secret.rs" />
-        <option value="$PROJECT_DIR$/src/ethkey/keypair.rs" />
         <option value="$PROJECT_DIR$/src/lib.rs" />
         <option value="$PROJECT_DIR$/Cargo.toml" />
+        <option value="$PROJECT_DIR$/src/ethkey/secret.rs" />
+        <option value="$PROJECT_DIR$/src/ethkey/keypair.rs" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-1818" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-1920" />
     <option name="y" value="23" />
-    <option name="width" value="1680" />
-    <option name="height" value="1027" />
+    <option name="width" value="1920" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -265,7 +254,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -288,10 +276,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Cargo Command.Test signature::test">
-    <configuration name="Test crypto::test::hash_eq" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+  <component name="RunManager" selected="Cargo Command.Test ethkey::keypair::tests::keypair_display">
+    <configuration name="Test ethkey::keypair::tests::from_secret" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="channel" value="DEFAULT" />
-      <option name="command" value="test --package cryptocurrency-kit --lib crypto::test::hash_eq -- --exact" />
+      <option name="command" value="test --package cryptocurrency-kit --lib ethkey::keypair::tests::from_secret -- --exact" />
       <option name="allFeatures" value="false" />
       <option name="nocapture" value="true" />
       <option name="backtrace" value="SHORT" />
@@ -299,21 +287,11 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="Test encoding::msgpack::test::de_vec" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+    <configuration name="Test ethkey::keypair::tests::keypair_display" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="channel" value="DEFAULT" />
-      <option name="command" value="test --package cryptocurrency-kit --lib encoding::msgpack::test::de_vec -- --exact" />
+      <option name="command" value="test --package cryptocurrency-kit --lib ethkey::keypair::tests::keypair_display -- --exact" />
       <option name="allFeatures" value="false" />
       <option name="nocapture" value="true" />
-      <option name="backtrace" value="SHORT" />
-      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test encoding::msgpack::test::u8_hsh" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
-      <option name="channel" value="DEFAULT" />
-      <option name="command" value="test --package cryptocurrency-kit --lib encoding::msgpack::test::u8_hsh -- --exact" />
-      <option name="allFeatures" value="false" />
-      <option name="nocapture" value="false" />
       <option name="backtrace" value="SHORT" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
       <envs />
@@ -324,6 +302,16 @@
       <option name="command" value="test --package cryptocurrency-kit --lib encoding::json::test" />
       <option name="allFeatures" value="false" />
       <option name="nocapture" value="true" />
+      <option name="backtrace" value="SHORT" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test keypair::tests" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="test --package cryptocurrency-kit --lib ethkey::keypair::tests" />
+      <option name="allFeatures" value="false" />
+      <option name="nocapture" value="false" />
       <option name="backtrace" value="SHORT" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
       <envs />
@@ -340,19 +328,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Cargo Command.Test encoding::msgpack::test::de_vec" />
-      <item itemvalue="Cargo Command.Test crypto::test::hash_eq" />
-      <item itemvalue="Cargo Command.Test encoding::msgpack::test::u8_hsh" />
       <item itemvalue="Cargo Command.Test json::test" />
       <item itemvalue="Cargo Command.Test signature::test" />
+      <item itemvalue="Cargo Command.Test ethkey::keypair::tests::from_secret" />
+      <item itemvalue="Cargo Command.Test keypair::tests" />
+      <item itemvalue="Cargo Command.Test ethkey::keypair::tests::keypair_display" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Cargo Command.Test ethkey::keypair::tests::keypair_display" />
+        <item itemvalue="Cargo Command.Test ethkey::keypair::tests::from_secret" />
+        <item itemvalue="Cargo Command.Test keypair::tests" />
         <item itemvalue="Cargo Command.Test signature::test" />
         <item itemvalue="Cargo Command.Test json::test" />
-        <item itemvalue="Cargo Command.Test encoding::msgpack::test::u8_hsh" />
-        <item itemvalue="Cargo Command.Test encoding::msgpack::test::de_vec" />
-        <item itemvalue="Cargo Command.Test crypto::test::hash_eq" />
       </list>
     </recent_temporary>
   </component>
@@ -396,20 +384,12 @@
       <workItem from="1544626172200" duration="1363000" />
       <workItem from="1552141186811" duration="766000" />
       <workItem from="1552728694354" duration="204000" />
-      <workItem from="1554095356066" duration="7690000" />
+      <workItem from="1554095356066" duration="8684000" />
+      <workItem from="1554459965860" duration="2670000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test_crypto__test - 2018.11.27 at 22h 21m 16s.xml">
-      <configuration name="Test crypto::test" configurationId="CargoCommandRunConfiguration" />
-    </history-entry>
-    <history-entry file="Test_crypto__test__t_short_term - 2018.12.03 at 11h 42m 40s.xml">
-      <configuration name="Test crypto::test::t_short_term" configurationId="CargoCommandRunConfiguration" />
-    </history-entry>
-    <history-entry file="Test_crypto__test__hash - 2018.12.03 at 11h 44m 49s.xml">
-      <configuration name="Test crypto::test::hash" configurationId="CargoCommandRunConfiguration" />
-    </history-entry>
     <history-entry file="Test_crypto__test__t_empty_hash - 2018.12.07 at 18h 40m 29s.xml">
       <configuration name="Test crypto::test::t_empty_hash" configurationId="CargoCommandRunConfiguration" />
     </history-entry>
@@ -431,9 +411,18 @@
     <history-entry file="Test_signature__test - 2018.12.12 at 23h 05m 35s.xml">
       <configuration name="Test signature::test" configurationId="CargoCommandRunConfiguration" />
     </history-entry>
+    <history-entry file="Test_ethkey__keypair__tests__from_secret - 2019.04.05 at 18h 33m 04s.xml">
+      <configuration name="Test ethkey::keypair::tests::from_secret" configurationId="CargoCommandRunConfiguration" />
+    </history-entry>
+    <history-entry file="Test_ethkey__keypair__tests__from_secret - 2019.04.05 at 18h 33m 23s.xml">
+      <configuration name="Test ethkey::keypair::tests::from_secret" configurationId="CargoCommandRunConfiguration" />
+    </history-entry>
+    <history-entry file="Test_ethkey__keypair__tests__keypair_display - 2019.04.06 at 02h 22m 24s.xml">
+      <configuration name="Test ethkey::keypair::tests::keypair_display" configurationId="CargoCommandRunConfiguration" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46526000" />
+    <option name="totallyTimeSpent" value="50190000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -445,22 +434,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1818" y="23" width="1680" height="1027" extended-state="0" />
+    <frame x="-1920" y="23" width="1920" height="1057" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16605617" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14643237" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.31764707" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.35751295" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.6227979" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32982087" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.4342246" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32953367" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.045595855" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Missing In Actions" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -474,13 +463,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.cargo/git/checkouts/rust-secp256k1-e90785e8ed5830aa/db81cfe/src/lib.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="910">
-          <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.cargo/git/checkouts/rust-secp256k1-e90785e8ed5830aa/db81cfe/src/ffi.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2142">
@@ -588,13 +570,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/ethereum-types-0.4.2/src/hash.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="74" column="20" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/tiny-keccak-1.4.2/src/lib.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2599">
@@ -674,9 +649,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mem/mod.rs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ethkey/error.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -712,26 +684,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.cargo/git/checkouts/rust-secp256k1-e90785e8ed5830aa/ccc06e7/src/key.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="87" column="11" selection-start-line="87" selection-start-column="11" selection-end-line="87" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src/libcore/convert.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="473" column="7" selection-start-line="473" selection-start-column="7" selection-end-line="473" selection-end-column="7" />
-          <folding>
-            <element signature="e#17513#17514#0" expanded="true" />
-            <element signature="e#17558#17559#0" expanded="true" />
-            <element signature="e#18689#18690#0" expanded="true" />
-            <element signature="e#18717#18718#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/ethereum-types-0.5.2/src/lib.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="338">
@@ -739,10 +691,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/fixed-hash-0.3.0/src/hash.rs">
+    <entry file="file://$PROJECT_DIR$/Cargo.toml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+        <state relative-caret-position="324">
+          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/mod.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
@@ -753,10 +719,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/fixed-hash-0.3.0/src/hash.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="882">
+          <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_json-1.0.39/src/de.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40194">
+          <caret line="2311" column="7" selection-start-line="2311" selection-start-column="7" selection-end-line="2311" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ethkey/signature.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="49" column="30" lean-forward="true" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
+          <folding>
+            <element signature="e#1089#1090#0" expanded="true" />
+            <element signature="e#1166#1167#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/ethereum-types-0.4.2/src/hash.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="103" column="7" selection-start-line="103" selection-start-column="7" selection-end-line="103" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/ethereum-types-0.5.2/src/hash.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="84" column="24" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="24" />
+        <state relative-caret-position="537">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
           <folding>
             <element signature="e#2585#2586#0" expanded="true" />
             <element signature="e#2617#2618#0" expanded="true" />
@@ -764,65 +762,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/mod.rs">
+    <entry file="file://$USER_HOME$/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src/libcore/convert.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+        <state relative-caret-position="191">
+          <caret line="518" column="7" selection-start-line="518" selection-start-column="7" selection-end-line="518" selection-end-column="7" />
           <folding>
-            <element signature="e#987#988#0" expanded="true" />
-            <element signature="e#1011#1012#0" expanded="true" />
-            <element signature="e#636#637#0" expanded="true" />
-            <element signature="e#660#661#0" expanded="true" />
-            <element signature="e#852#853#0" expanded="true" />
-            <element signature="e#891#892#0" expanded="true" />
+            <element signature="e#18852#18853#0" expanded="true" />
+            <element signature="e#18880#18881#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ethkey/signature.rs">
+    <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_json-1.0.39/src/error.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="62" column="5" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
-          <folding>
-            <element signature="e#5566#5567#0" expanded="true" />
-            <element signature="e#5620#5621#0" expanded="true" />
-            <element signature="e#6318#6319#0" expanded="true" />
-            <element signature="e#6344#6345#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="198">
+          <caret line="184" column="4" selection-start-line="184" selection-start-column="4" selection-end-line="184" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.cargo/git/checkouts/rust-secp256k1-e90785e8ed5830aa/ccc06e7/src/key.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="27" column="11" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mem/mod.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ethkey/secret.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="78" column="7" selection-start-line="78" selection-start-column="7" selection-end-line="78" selection-end-column="7" />
+        <state relative-caret-position="197">
+          <caret line="96" column="16" lean-forward="true" selection-start-line="96" selection-start-column="16" selection-end-line="96" selection-end-column="16" />
           <folding>
-            <element signature="e#2637#2638#0" expanded="true" />
-            <element signature="e#2660#2661#0" expanded="true" />
-            <element signature="e#3154#3155#0" expanded="true" />
-            <element signature="e#3180#3181#0" expanded="true" />
+            <element signature="e#3200#3201#0" expanded="true" />
+            <element signature="e#3226#3227#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ethkey/keypair.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="101" column="22" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cargo.toml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="11" selection-start-line="18" selection-end-line="19" />
+        <state relative-caret-position="188">
+          <caret line="121" column="14" selection-start-line="121" selection-start-column="14" selection-end-line="121" selection-end-column="14" />
         </state>
       </provider>
     </entry>
