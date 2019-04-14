@@ -53,7 +53,7 @@ impl KeyPair {
         let pub_key = key::PublicKey::from_secret_key(context, &s)?;
         let serialized = pub_key.serialize_vec(context, false);
 
-        let mut public = H512::from(to_fixed_array_64(&serialized[1..65]));
+        let public = H512::from(to_fixed_array_64(&serialized[1..65]));
 
         let keypair = KeyPair {
             secret,

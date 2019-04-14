@@ -53,11 +53,11 @@ impl StorageKey for Zero {
         0
     }
 
-    fn write(&self, buffer: &mut [u8]) {
+    fn write(&self, _: &mut [u8]) {
         // no-op
     }
 
-    fn read(_buffer: &[u8]) -> Self::Owned {
+    fn read(_: &[u8]) -> Self::Owned {
         Zero
     }
 }

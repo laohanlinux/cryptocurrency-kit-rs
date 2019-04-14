@@ -81,7 +81,7 @@ impl StorageValue for Zero {
         vec![]
     }
 
-    fn from_bytes(value: Cow<[u8]>) -> Self {
+    fn from_bytes(_: Cow<[u8]>) -> Self {
         Zero
     }
 }

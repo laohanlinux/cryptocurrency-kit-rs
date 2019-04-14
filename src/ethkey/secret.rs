@@ -43,7 +43,7 @@ impl Secret {
             return None;
         }
         // TODO Opz use unsafe code to advoice alloc new space
-        let mut h = H256::from(to_fixed_array_32(key));
+        let h = H256::from(to_fixed_array_32(key));
         Some(Secret { inner: Memzero::from(h) })
     }
 
