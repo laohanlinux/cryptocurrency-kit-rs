@@ -15,21 +15,15 @@
 #![allow(unsafe_code)]
 
 //! A definition of `StorageKey` trait and implementations for common types.
-use types::Zero;
-use common::{from_msgpack, to_msgpack_vec};
-use crypto::{hash, CryptoHash, Hash, HASH_SIZE};
-use encoding::*;
-use ethkey::{Generator, Public, Random, Signature, SIGNATURE_SIZE};
+use crate::types::Zero;
+use crate::crypto::{Hash, HASH_SIZE};
+use crate::ethkey::{Public, Signature, SIGNATURE_SIZE};
 
 use byteorder::{BigEndian, ByteOrder};
-use serde::{Deserialize, Serialize};
-use chrono::{DateTime, NaiveDateTime, Utc};
+use chrono::{DateTime, Utc};
 use rust_decimal::Decimal;
 use uuid::Uuid;
 
-use std::borrow::Cow;
-use std::io::Cursor;
-use std::mem;
 
 pub trait StorageKey: ToOwned {
     /// Returns the size of the serialized key in bytes.
@@ -155,7 +149,7 @@ impl StorageKey for DateTime<Utc> {
     fn read(buffer: &[u8]) -> Self::Owned {
         let secs = i64::read(&buffer[0..8]);
         let nanos = u32::read(&buffer[8..12]);
-        Self::from_utc(NaiveDateTime::from_timestamp(secs, nanos), Utc)
+        DateTime::from_timestamp(secs, nanos).unwrap_or_else(Utc::now)
     }
 }
 
@@ -277,6 +271,7 @@ storage_key_for_crypto_option_types! {Hash, HASH_SIZE}
 #[cfg(test)]
 mod test {
     use super::*;
+    use crate::ethkey::{Generator, Random};
     use std::io::{self, Write};
 
     #[test]

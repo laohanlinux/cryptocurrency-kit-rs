@@ -1,4 +1,4 @@
-use rand::os::OsRng;
+use rand::rngs::OsRng;
 use super::{Void, Generator, KeyPair, SECP256K1};
 
 #[derive(Default)]
@@ -8,7 +8,7 @@ impl Generator for Random {
     type Error = ::std::io::Error;
 
     fn generate(&mut self) -> Result<KeyPair, Self::Error> {
-        let mut rng = OsRng::new()?;
+        let mut rng = OsRng;
         match rng.generate() {
             Ok(pair) => Ok(pair),
             Err(void) => match void { }, // LLVM unreachable

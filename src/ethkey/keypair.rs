@@ -16,13 +16,11 @@
 
 use std::fmt;
 use parity_crypto::Keccak256;
-use ethereum_types::{H256, H160, H512};
+use ethereum_types::H512;
 
 use secp256k1::key;
-use common::{to_hex, to_fixed_array, to_fixed_array_20, to_fixed_array_64};
+use crate::common::{to_hex, to_fixed_array_20, to_fixed_array_64};
 use super::{Secret, SECP256K1, Public, Address, Error};
-use chrono::format::Numeric::Hour12;
-use proc_macro::bridge::TokenTree::Punct;
 
 pub fn public_to_address(public: &Public) -> Address {
     let hash = public.keccak256();

@@ -2,14 +2,10 @@ use std::io::Cursor;
 
 use ethereum_types::H256;
 use hex;
-use keccak_hash::keccak;
-use rmps::decode::Error;
 use rmps::{Deserializer, Serializer};
-use rustc_hex::ToHex;
-use serde::{Deserialize, Deserializer as stdDer, Serialize, Serializer as stdSer};
+use serde::{Deserialize, Serialize, Serializer as stdSer};
 use sha3::{Digest, Sha3_256};
 use crate::ethkey::keccak::Keccak256;
-use std::intrinsics::copy;
 
 //TODO Opz
 pub fn to_fixed_array_20(data: &[u8]) -> [u8; 20] {

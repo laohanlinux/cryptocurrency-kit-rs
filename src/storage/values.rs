@@ -14,21 +14,15 @@
 
 //! A definition of `StorageValue` trait and implementations for common types.
 
-use byteorder::{ByteOrder, LittleEndian};
-use chrono::prelude::*;
-use chrono::{DateTime, NaiveDateTime, Utc};
-use encoding;
-use serde::{Deserialize, Serialize};
+use chrono::{DateTime, Utc};
 use uuid::Uuid;
 
 use std::borrow::Cow;
-use std::io::Cursor;
-use std::mem;
 
 use super::hash::UniqueHash;
-use types::Zero;
-use crypto::{CryptoHash, Hash};
-use ethkey::Public as PublicKey;
+use crate::types::Zero;
+use crate::crypto::Hash;
+use crate::ethkey::Public as PublicKey;
 
 pub trait StorageValue: UniqueHash + Sized {
     /// Serialize a value into a vector of bytes.
@@ -61,7 +55,7 @@ implement_storagevalue_traits! {i8}
 implement_storagevalue_traits! {i16}
 implement_storagevalue_traits! {i32}
 implement_storagevalue_traits! {i64}
-/// Uses UTF-8 string serialization.
+// Uses UTF-8 string serialization.
 implement_storagevalue_traits! {String}
 implement_storagevalue_traits! {Uuid}
 

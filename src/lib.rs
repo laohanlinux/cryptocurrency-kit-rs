@@ -1,5 +1,4 @@
-#![feature(fixed_size_array)]
-#![feature(proc_macro_internals)]
+#![allow(non_local_definitions, unused_imports)]
 
 pub mod types;
 pub mod common;
@@ -38,7 +37,6 @@ extern crate rust_decimal;
 extern crate rustc_hex;
 extern crate tiny_keccak;
 extern crate core;
-extern crate proc_macro;
 
 #[cfg(test)]
 mod tests {

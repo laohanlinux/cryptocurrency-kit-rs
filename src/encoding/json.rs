@@ -1,14 +1,11 @@
-use std::io::Cursor;
 use std::string::String;
 use std::time::Duration;
 
-use types::Zero;
-use crypto::*;
-use ethkey::Public as PublicKey;
-use sha3::{Digest, Sha3_256};
+use crate::types::Zero;
+use crate::crypto::*;
+use crate::ethkey::Public as PublicKey;
 
 use chrono::prelude::*;
-use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
 /////////////////////////////////////////////
@@ -70,7 +67,7 @@ impl CryptoHash for DateTime<Utc> {
 #[cfg(test)]
 mod test {
     use super::*;
-    use ethkey::Generator;
+    use crate::ethkey::Generator;
     use std::io::{self, Write};
 
     #[test]
@@ -92,10 +89,10 @@ mod test {
 
     #[test]
     fn publickey_hash() {
-        (0..100).for_each(|i| {
-            let keypair = ::ethkey::Random {}.generate().unwrap();
+        (0..100).for_each(|_i| {
+            let keypair = crate::ethkey::Random {}.generate().unwrap();
             let pubkey = keypair.public();
-            let mut buf = serde_json::to_vec(pubkey).unwrap();
+            let buf = serde_json::to_vec(pubkey).unwrap();
             writeln!(io::stdout(), "{}", buf.len()).unwrap();
         })
     }
@@ -108,7 +105,7 @@ mod test {
 
     #[test]
     fn json_unit() {
-        let mut buf = serde_json::to_vec(&()).unwrap();
+        let buf = serde_json::to_vec(&()).unwrap();
         writeln!(io::stdout(), "{:?}", buf).unwrap();
     }
 

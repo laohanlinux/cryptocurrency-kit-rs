@@ -1,9 +1,7 @@
 use std::iter;
 
-use ethereum_types::H256;
 
 use crate::common::to_keccak;
-use crate::crypto::{CryptoHash, Hash, hash};
 
 #[derive(Debug, Clone)]
 pub struct MerkleTree {
@@ -11,6 +9,7 @@ pub struct MerkleTree {
 }
 
 #[derive(Debug, Clone)]
+#[allow(dead_code)]
 pub struct MerkleNode {
     pub data: Box<Vec<u8>>,
     left: Option<Box<MerkleNode>>,

@@ -3,6 +3,7 @@ use serde::ser::{Serialize, SerializeTuple, Serializer};
 use std::fmt;
 use std::marker::PhantomData;
 
+#[allow(dead_code)]
 trait BigArray<'de>: Sized {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
@@ -12,6 +13,7 @@ trait BigArray<'de>: Sized {
         D: Deserializer<'de>;
 }
 
+#[allow(dead_code)]
 trait BigArrayTuple<'de>: Sized {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where

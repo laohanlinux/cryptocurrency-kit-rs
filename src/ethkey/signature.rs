@@ -1,7 +1,7 @@
 use super::{public_to_address, Address, Error, Message, Public, Secret, SECP256K1};
-use common::{to_hex, to_keccak};
-use crypto::{hash, CryptoHash, Hash};
-use ethereum_types::{H256, H520};
+use crate::common::{to_hex, to_keccak};
+use crate::crypto::{hash, CryptoHash, Hash};
+use ethereum_types::H520;
 use secp256k1::key::{PublicKey, SecretKey};
 use secp256k1::{Error as SecpError, Message as SecpMessage, RecoverableSignature, RecoveryId};
 use serde::de::{Error as SerdeDeError, SeqAccess, Visitor};
@@ -139,7 +139,7 @@ impl FromStr for Signature {
     type Err = Error;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let dec_hex = ::common::from_hex(s);
+        let dec_hex = crate::common::from_hex(s);
         match dec_hex {
             Ok(ref hex) if hex.len() == 65 => {
                 let mut data = [0; SIGNATURE_SIZE];
@@ -292,7 +292,7 @@ pub fn recover_bytes(signature: &Signature, bytes: &[u8]) -> Result<Public, Erro
 #[cfg(test)]
 mod test {
     use super::{recover, recover_bytes, sign, sign_bytes, verify_address, verify_public, Signature};
-    use ethkey::{random::Random, Generator, Message};
+    use crate::ethkey::{random::Random, Generator, Message};
     use std::io::{self, Write};
     use std::str::FromStr;
 

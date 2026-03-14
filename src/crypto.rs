@@ -1,17 +1,12 @@
 use sha3::{Digest, Sha3_256};
-use std::io::Cursor;
 use std::iter::FromIterator;
 use std::string::String;
-use std::time::{Duration, SystemTime, UNIX_EPOCH};
 
-use common;
+use crate::common;
 
-use chrono::prelude::*;
-use rustc_hex::{FromHex, FromHexError, ToHex};
-use serde::{Deserialize, Serialize};
-use uuid::Uuid;
-use ethkey::{Message, Error as SignError, signature::sign, Signature};
-use ethkey::secret::Secret;
+use rustc_hex::{FromHexError, ToHex};
+use crate::ethkey::{Message, Error as SignError, signature::sign, Signature};
+use crate::ethkey::secret::Secret;
 
 pub const HASH_SIZE: usize = 32;
 pub const EMPTY_HASH: Hash = Hash([0_u8; HASH_SIZE]);

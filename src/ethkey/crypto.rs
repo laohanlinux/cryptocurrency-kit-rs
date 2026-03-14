@@ -13,14 +13,14 @@ pub enum Error {
 }
 
 pub mod sign {
-    use common;
-    use crypto::Hash;
-    use ethkey::{Error, Generator, Public, Secret, SECP256K1};
-    use secp256k1::{self, key, ContextFlag, Message, Secp256k1, Signature};
+    
+    use crate::crypto::Hash;
+    use crate::ethkey::{Public, Secret, SECP256K1};
+    use secp256k1::{self, key, Message, Signature};
 
     pub fn verify(public: &Public, sign: &Signature, plain_text_hash: &Hash) -> bool {
         let context = &SECP256K1;
-        /// the first byte flag whether compress
+        // the first byte flag whether compress
         let pdata = {
             let mut temp = [4u8; 65];
             (&mut temp[1..65]).copy_from_slice(&public[0..64]);
@@ -47,13 +47,12 @@ pub mod sign {
 #[cfg(test)]
 mod test {
     use super::*;
-    use crypto::{hash, CryptoHash, Hash};
-    #[macro_use]
-    use encoding::json::*;
+    use crate::crypto::{hash, CryptoHash, Hash};
+    use crate::encoding::json::*;
     use ethereum_types::H256;
-    use ethkey::random::Random;
-    use ethkey::Generator;
-    use ethkey::{Address, KeyPair, Public};
+    use crate::ethkey::random::Random;
+    use crate::ethkey::Generator;
+    use crate::ethkey::{Address, KeyPair, Public};
     use serde::{Deserialize, Serialize};
     use std::io::{self, Write};
 
@@ -100,7 +99,7 @@ mod test {
             let val = Validator::new(&keypair);
             let block = Block::new(i as u64, vec![val]);
             let hash = block.hash();
-            writeln!(io::stdout(), "{}: {}", i, ::common::to_hex(hash.as_ref())).unwrap();
+            writeln!(io::stdout(), "{}: {}", i, crate::common::to_hex(hash.as_ref())).unwrap();
             let secp_hash = secp256k1::Message::from_slice(hash.as_ref()).unwrap();
             let signature = sign::sign(&secp_hash, keypair.secret());
 

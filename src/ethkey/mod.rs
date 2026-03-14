@@ -12,8 +12,6 @@ pub use self::keypair::{KeyPair, public_to_address};
 pub use self::random::Random;
 pub use self::signature::{sign, sign_bytes, verify_public, verify_address, recover, recover_bytes, Signature, SIGNATURE_SIZE};
 
-#[macro_use]
-pub use encoding::json::*;
 
 use secp256k1::Secp256k1;
 use ethereum_types::H256;
