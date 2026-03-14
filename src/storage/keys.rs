@@ -15,15 +15,14 @@
 #![allow(unsafe_code)]
 
 //! A definition of `StorageKey` trait and implementations for common types.
+use crate::crypto::{HASH_SIZE, Hash};
+use crate::ethkey::{Public, SIGNATURE_SIZE, Signature};
 use crate::types::Zero;
-use crate::crypto::{Hash, HASH_SIZE};
-use crate::ethkey::{Public, Signature, SIGNATURE_SIZE};
 
 use byteorder::{BigEndian, ByteOrder};
 use chrono::{DateTime, Utc};
 use rust_decimal::Decimal;
 use uuid::Uuid;
-
 
 pub trait StorageKey: ToOwned {
     /// Returns the size of the serialized key in bytes.
@@ -219,9 +218,9 @@ macro_rules! storage_key_for_ints {
     };
 }
 
-storage_key_for_ints!{u16, i16, 2, read_u16, write_u16}
-storage_key_for_ints!{u32, i32, 4, read_u32, write_u32}
-storage_key_for_ints!{u64, i64, 8, read_u64, write_u64}
+storage_key_for_ints! {u16, i16, 2, read_u16, write_u16}
+storage_key_for_ints! {u32, i32, 4, read_u32, write_u32}
+storage_key_for_ints! {u64, i64, 8, read_u64, write_u64}
 
 #[macro_export]
 macro_rules! storage_key_for_crypto_types {
